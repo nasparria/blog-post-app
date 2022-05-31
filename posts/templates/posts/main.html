@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="{% static "blog.css" %}">
+  </head>
+  <body>
+    <header>
+      <div>My Book Reviews</div>
+      <nav>
+        <a href="{% url "create_post" %}">Create a review</a>
+      </nav>
+    </header>
+    <main>
+        {% for post in posts %}
+        <div class="main-page-blogs">
+          <img class="book-cover" src="{{ post.cover_image }}">
+          <h2 class="book-title">
+            <a href="{% url "post_detail" post.id %}">{{ post.title }}</a>
+          </h2>
+          <div class="book-rating">{{ post.rating }} stars</div>
+          <div class="book-authors">
+            {{ post.authors }}
+          </div>
+          <h3>Summary</h3>
+          <p>
+            {{ post.summary }}
+          </p>
+        </div>
+      {% endfor %}     
+    </main>
+    <footer>
+      <div>
+        Copyright 2022 by me
+      </div>
+      <p>
+        This is my site that contains all of my book reviews
+        that you can read to see if you'd like that book.
+      </p>
+    </footer>
+  </body>
+</html>
